@@ -86,7 +86,7 @@ function getSelectionHeaderLabel(app) {
 
 // reset and try again button component
 function resetButton(app) {
-    return h("button", { "class": "dob-datepicker__reset" },
+    return h("button", { "type": "button", "class": "dob-datepicker__reset" },
         [
             h("div", {
                 "class": "dob-datepicker__reset-text",
@@ -105,6 +105,7 @@ function monthSelection(app) {
     return h("div", { "class": "dob-datepicker__month", tabindex: "0" },
         app.options[app.options.show_long_month ? 'long_month' : 'short_month'].map((month, index) => {
             return h("button", {
+                "type": "button",
                 "key": index + 1,
                 "value": index + 1,
                 "class": "dob-datepicker__month__button",
@@ -126,6 +127,7 @@ function daySelection(app) {
         [...Array(app.state.dob.month === 2 ? 30 : 32).keys()].map((day, index) => {
             // console.log(index + 1)
             return day === 0 ? null : h("button", {
+                "type": "button",
                 "key": index,
                 "value": index,
                 "class": "dob-datepicker__day__button",
@@ -207,7 +209,7 @@ function generateYear(app) {
             // craete element of each BUTTON then store it to year section container
             year_section.push(
                 h('button', {
-                    "key": i, "value": i, "class": "dob-datepicker__year__button", onclick: () => {
+                    "type": "button", "key": i, "value": i, "class": "dob-datepicker__year__button", onclick: () => {
                         storeValue('year', i, app)
                         app.renderDatepicker()
                     }
