@@ -25,7 +25,7 @@ function datepickerUI(app) {
                     app.state.show_alerts ? alerts(app) : h("div", {}),
                     selectionHeader(app), // show selection labels, like "Select day", "Select month", "Select year"
                     h("div", { "class": "dob-datepicker__options" }, //wrapper for options
-                        getCurrenPageSelection(app) //show option component depend on what page currently is
+                        getCurrentPageSelection(app) //show option component depend on what page currently is
                     ),
                     app.state.current_page > 0 ? resetButton(app) : h("div", {}) // restart button, hidden when on the first page (current_page = 0)
                 ]
@@ -44,7 +44,7 @@ function topArrow(app) {
 // if page 0, then show month component,
 // if page 1, then show day component,
 // if page 2, then show year component
-function getCurrenPageSelection(app) {
+function getCurrentPageSelection(app) {
     if (app.state.current_page === 0) {
         return monthSelection(app)
     } else if (app.state.current_page === 1) {
@@ -137,7 +137,7 @@ function daySelection(app) {
                 }
             }, [
                 text(day),
-                app.options.enable_ordinal_number ? h('sup', { "class": "dob-datepicker__day__ordinal-number" }, getOrdinalSufix(index)) : null
+                app.options.enable_ordinal_number ? h('sup', { "class": "dob-datepicker__day__ordinal-number" }, getOrdinalSuffix(index)) : null
             ])
         })
 
@@ -146,7 +146,7 @@ function daySelection(app) {
 
 // get ordinal sufix for day like 1st, 2nd, 3rd, 4th, etc
 // I know it's dumb that I hardcoded it, but hey it works lol
-function getOrdinalSufix(number) {
+function getOrdinalSuffix(number) {
 
     switch (true) {
         case number === 1 || number === 21 || number === 31:
